@@ -29,6 +29,6 @@
   - [ ] 一覧表示 :writing_hand:
   - [ ] 詳細表示 :writing_hand:
   - [ ] データ追加 :writing_hand:
-  - [ ] データ削除 :writing_hand:
+  - [ ] データ削除 :vomiting_face:
   - [ ] データ編集 :writing_hand:
 - [ ] 提出 :tada:
