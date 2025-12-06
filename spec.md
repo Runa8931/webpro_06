@@ -12,4 +12,5 @@
 `
 めん-->ラーメン，うどん-->カロリー「」，消費量「」
 `
+とし，カテゴリの欄に追加機能を追加し，カテゴリ内で，編集，削除機能を追加する．
 データの取得としては[ご飯](https://furunavi.jp/discovery/knowledge_food/202409-rice/?srsltid=AfmBOorkSOIimwWOgla9MsqObSPsVoVApc5gmd8nnQU9d_Q_Wxm9nTKG)を参照した．
