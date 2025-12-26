@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %> の削除確認</title>
+</head>
+<body>
+  <h2><%= data.name %> を削除しますか？</h2>
+
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>ID</td><td><%= data.id %></td></tr>
+    <tr><td>種類名</td><td><%= data.name %></td></tr>
+    <tr><td>温度</td><td><%= data.temp %></td></tr>
+  </table>
+
+  <!-- 削除フォーム -->
+  <form action="/udon/delete/<%= id %>" method="POST">
+    <input type="submit" value="削除する">
+  </form>
+
+  <a href="/udon/">一覧へ戻る</a>
+</body>
+</html>

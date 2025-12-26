@@ -1,3 +1,4 @@
+"use strict";
 const express = require("express");
 const app = express();
 
@@ -160,9 +161,85 @@ app.post("/keiyo2/update/:number", (req, res) => {
   res.redirect('/keiyo2' );
 });
 
-app.get("/keiyo2", (req, res) => {
+
+
+
+//自作
+let shouhin = [
+  { id:1, name:"かけうどん", temp:"あったかい" },
+  { id:2, name:"ざるうどん", temp:"つめたい" },
+  { id:3, name:"ぶっかけうどん", temp:"あったかい/つめたい" },
+  { id:4, name:"釜揚げうどん", temp:"あったかい" },
+  { id:5, name:"カレーうどん", temp:"あったかい" },
+];
+//top
+app.get("/", (req, res) => {
+  res.render("top");
+});
+//一覧
+app.get("/udon", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  res.render('keiyo2', {data: station2} );
+  res.render('udon', {data: shouhin} );
+});
+
+// Create
+app.get("/udon/create", (req, res) => {
+  res.redirect('/public/udon_new.html');
+});
+
+// Read
+app.get("/udon/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = shouhin[ number ];
+  res.render('udon_detail', {id: number, data: detail} );
+});
+
+// Delete確認画面を表示
+app.get("/udon/delete/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = shouhin[number];
+
+  res.render("udon_delete", { id: number, data: detail });
+});
+
+// Delete 実行
+app.post("/udon/delete/:number", (req, res) => {
+  shouhin[req.params.number] = null;
+  res.redirect("/udon");
+});
+
+
+
+// Create
+app.post("/udon", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const maxId = shouhin.reduce((max, item) => item ? Math.max(max, item.id) : max, 0);
+  const newId = maxId + 1;
+  const name = req.body.name;
+  const temp = req.body.temp;
+  shouhin.push({ id: newId, name: name, temp: temp });
+  console.log( shouhin );
+  res.render('udon', {data: shouhin} );
+});
+
+// Edit
+app.get("/udon/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = shouhin[ number ];
+  res.render('udon_edit', {id: number, data: detail} );
+});
+
+// Update
+app.post("/udon/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  shouhin[req.params.number].name = req.body.name;
+  shouhin[req.params.number].temp = req.body.temp;
+
+  console.log( shouhin );
+  res.redirect('/udon' );
 });
 
 
