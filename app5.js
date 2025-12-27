@@ -166,11 +166,11 @@ app.post("/keiyo2/update/:number", (req, res) => {
 
 //自作
 let shouhin = [
-  { id:1, name:"かけうどん", temp:"あったかい" },
-  { id:2, name:"ざるうどん", temp:"つめたい" },
-  { id:3, name:"ぶっかけうどん", temp:"あったかい/つめたい" },
-  { id:4, name:"釜揚げうどん", temp:"あったかい" },
-  { id:5, name:"カレーうどん", temp:"あったかい" },
+  { id:1, name:"かけうどん", temp:"温かい", s:"茹でたうどんに温かい出汁をかけた，シンプルなうどんで風味を楽しむもの．薬味はネギや天かすなどが一般的．" },
+  { id:2, name:"ざるうどん", temp:"冷たい", s:"茹でたうどんを冷水で締め，ザルなどに盛り付けたうどんで最初はつゆのみで食べると良い．薬味はネギや生姜，唐辛子などがある．" },
+  { id:3, name:"ぶっかけうどん", temp:"温かい/冷たい", s:"温かいのと冷たいのが存在するうどん．コシが強く濃いつゆで食べるのでしっかり絡むのが特徴．薬味はネギ，天かす，天ぷらなどがある．" },
+  { id:4, name:"釜揚げうどん", temp:"温かい", s:"茹でたうどんを水でしめず茹で汁ごと桶に入れ，温かい出しにつけて食べるうどん．もちもちした食感とツルッとした喉越しが特徴．"  },
+  { id:5, name:"カレーうどん", temp:"温かい", s:"鰹節などの和風出汁に，カレールーを溶かし，片栗粉などでとろみをつけた汁が入ったうどん．カレーのように玉ねぎや豚肉などの具材が入っており，とろみのある汁で冷めにくいのが特徴．" },
 ];
 //top
 app.get("/", (req, res) => {
@@ -214,11 +214,11 @@ app.post("/udon/delete/:number", (req, res) => {
 // Create
 app.post("/udon", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
-  const maxId = shouhin.reduce((max, item) => item ? Math.max(max, item.id) : max, 0);
-  const newId = maxId + 1;
+  const id = shouhin.length + 1;
   const name = req.body.name;
   const temp = req.body.temp;
-  shouhin.push({ id: newId, name: name, temp: temp });
+  const s = req.body.s
+  shouhin.push( { id: id, name: name, temp: temp, s: s } );
   console.log( shouhin );
   res.render('udon', {data: shouhin} );
 });
@@ -237,10 +237,164 @@ app.post("/udon/update/:number", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   shouhin[req.params.number].name = req.body.name;
   shouhin[req.params.number].temp = req.body.temp;
-
+  shouhin[req.params.number].s = req.body.s;
   console.log( shouhin );
   res.redirect('/udon' );
 });
 
 
+let shouhin2 = [
+  { id:1, name:"醤油ラーメン", temp:"東京（浅草）", s:"鶏ガラや魚介などからとった出汁に醤油だれ（かえし）を合わせたラーメン．" },
+  { id:2, name:"味噌ラーメン", temp:"北海道（札幌）", s:"味噌をベースとした濃厚で濃いスープにもやしやコーン，バターなどの具材がのっているラーメン．" },
+  { id:3, name:"塩ラーメン", temp:"北海道（函館）", s:"鶏ガラや野菜などの出汁がベースとなり，あっさりでヘルシーなラーメン．" },
+  { id:4, name:"豚骨ラーメン", temp:"福岡（久留米）", s:"豚骨を長時間強火で煮込むことで濃厚なスープと紅生姜やキクラゲなどをトッピングするのが特徴なラーメン．"  },
+  { id:5, name:"鶏白湯ラーメン", temp:"明確ではないが京都が有力", s:"取りがランドを長時間煮込むことで白濁したスープで豚骨のような重さがなく，まろやかなラーメン．" },
+];
+//top
+app.get("/", (req, res) => {
+  res.render("top");
+});
+//一覧
+app.get("/ramen", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('ramen', {data: shouhin2} );
+});
+
+// Create
+app.get("/ramen/create", (req, res) => {
+  res.redirect('/public/ramen_new.html');
+});
+
+// Read
+app.get("/ramen/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = shouhin2[ number ];
+  res.render('ramen_detail', {id: number, data: detail} );
+});
+
+// Delete確認画面を表示
+app.get("/ramen/delete/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = shouhin2[number];
+
+  res.render("ramen_delete", { id: number, data: detail });
+});
+
+// Delete 実行
+app.post("/ramen/delete/:number", (req, res) => {
+  shouhin2[req.params.number] = null;
+  res.redirect("/ramen");
+});
+
+
+
+// Create
+app.post("/ramen", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = shouhin2.length + 1;
+  const name = req.body.name;
+  const temp = req.body.temp;
+  const s = req.body.s
+  shouhin2.push( { id: id, name: name, temp: temp, s: s } );
+  console.log( shouhin2 );
+  res.render('ramen', {data: shouhin2} );
+});
+
+// Edit
+app.get("/ramen/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = shouhin2[ number ];
+  res.render('ramen_edit', {id: number, data: detail} );
+});
+
+// Update
+app.post("/ramen/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  shouhin2[req.params.number].name = req.body.name;
+  shouhin2[req.params.number].temp = req.body.temp;
+  shouhin2[req.params.number].s = req.body.s;
+  console.log( shouhin2 );
+  res.redirect('/ramen' );
+});
+
+
+let shouhin3 = [
+  { id:1, name:"スパゲッティ", temp:"円状", s:"万能パスタで，ミートソースやトマトソースと和えるとよい．" },
+  { id:2, name:"フィットチーネ", temp:"長方形", s:"平な面で，ミートソースやクリームソースなど濃厚なソースとあう．" },
+  { id:3, name:"マカロニ", temp:"円筒形", s:"ショートパスタで，ミートソースと和えたり，チーズをかけてオーブンで焼くとよい．" },
+  { id:4, name:"ペンネ", temp:"円筒形", s:"トマトと唐辛子のオイルソースやトマトソースと和えるとよい．"  },
+  { id:5, name:"ラザニア", temp:"板状", s:"幅が広く板状のため，間にひき肉やソースを挟んで調理するとよい．" },
+];
+//top
+app.get("/", (req, res) => {
+  res.render("top");
+});
+//一覧
+app.get("/pasuta", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('pasuta', {data: shouhin3} );
+});
+
+// Create
+app.get("/pasuta/create", (req, res) => {
+  res.redirect('/public/pasuta_new.html');
+});
+
+// Read
+app.get("/pasuta/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = shouhin3[ number ];
+  res.render('pasuta_detail', {id: number, data: detail} );
+});
+
+// Delete確認画面を表示
+app.get("/pasuta/delete/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = shouhin3[number];
+
+  res.render("pasuta_delete", { id: number, data: detail });
+});
+
+// Delete 実行
+app.post("/pasuta/delete/:number", (req, res) => {
+  shouhin3[req.params.number] = null;
+  res.redirect("/pasuta");
+});
+
+
+
+// Create
+app.post("/pasuta", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = shouhin3.length + 1;
+  const name = req.body.name;
+  const temp = req.body.temp;
+  const s = req.body.s
+  shouhin3.push( { id: id, name: name, temp: temp, s: s } );
+  console.log( shouhin3 );
+  res.render('pasuta', {data: shouhin3} );
+});
+
+// Edit
+app.get("/pasuta/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = shouhin3[ number ];
+  res.render('pasuta_edit', {id: number, data: detail} );
+});
+
+// Update
+app.post("/pasuta/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  shouhin3[req.params.number].name = req.body.name;
+  shouhin3[req.params.number].temp = req.body.temp;
+  shouhin3[req.params.number].s = req.body.s;
+  console.log( shouhin3 );
+  res.redirect('/pasuta' );
+});
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

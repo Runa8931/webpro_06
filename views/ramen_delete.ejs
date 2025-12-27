@@ -11,15 +11,15 @@
     <tr><th>項目</th><th>データ</th></tr>
     <tr><td>ID</td><td><%= data.id %></td></tr>
     <tr><td>種類名</td><td><%= data.name %></td></tr>
-    <tr><td>温度</td><td><%= data.temp %></td></tr>
+    <tr><td>発祥</td><td><%= data.temp %></td></tr>
     <tr><td>特徴</td><td><%= data.s %></td></tr>
   </table>
 
   <!-- 削除フォーム -->
-  <form action="/udon/delete/<%= id %>" method="POST">
+  <form action="/ramen/delete/<%= id %>" method="POST">
     <input type="submit" value="削除する">
   </form>
 
-  <a href="/udon/">一覧へ戻る</a>
+  <a href="/ramen/">一覧へ戻る</a>
 </body>
 </html>

@@ -6,15 +6,15 @@
 </head>
 <body>
   <h2><%= data.name %>の編集</h2>
-  <form action="/udon/update/<%= data.id - 1 %>" method="POST">
+  <form action="/pasuta/update/<%= data.id - 1 %>" method="POST">
     <table>
       <tr><th>項目</th><th>データ</th></tr>
       <tr><td>種類名</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
-      <tr><td>温度</td><td><input type="text" name="temp" value="<%= data.temp %>"></td></tr>
-      <tr><td>特徴</td><td><input type="text" name="s" value="<%= data.s %>"></td></tr>
+      <tr><td>断面</td><td><input type="text" name="temp" value="<%= data.temp %>"></td></tr>
+      <tr><td>おすすめの食べ方</td><td><input type="text" name="s" value="<%= data.s %>"></td></tr>
     </table>
     <input type="submit" values="登録">
   </form>
-  <a href="/udon/">うどんの種類一覧に戻る</a>
+  <a href="/pasuta/">パスタの種類一覧に戻る</a>
 </body>
 </html>
