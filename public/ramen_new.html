@@ -6,14 +6,16 @@
 </head>
 <body>
     <form action="/ramen" method="POST">
+        <label for="name">種類名:</label>
+        <input type="text" name="name" required><br>
+     
+        <label for="temp">発祥:</label>
+        <input type="text" name="temp"><br>
 
-        <input type="text" name="name" required>
-        <label for="name">name:</label><br>
-        <input type="text" name="temp">
-        <label for="temp">temp:</label><br>
-        <input type="text" name="s">
-        <label for="s">s:</label><br>
- 
+        <label for="s">特徴:</label>
+        <input type="text" name="s"><br>
+
+
         <input type="submit" values="登録">
     </form>
 </body>

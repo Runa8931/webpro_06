@@ -7,6 +7,7 @@
 \usepackage{moreverb}
 \usepackage{lscape}
 \usepackage{url}
+
 %\pagestyle{empty}
 %\usepackage{wrapfig}
 %\usepackage{url}
@@ -25,10 +26,10 @@
 \author{25G1038川治稜雅}
 %\date{2015年11月13日}
 \maketitle
-githubのurlを以下に示す．
+githubのurlを以下に示す．\\
 \url{https://github.com/Runa8931/webpro_06}
 \section{利用者向け仕様書}
-\section{概要}
+\subsection{概要}
 このシステムはWeb上でデータを閲覧または管理できるアプリケーションである．データの閲覧，詳細確認に加え，データの追加，編集，削除が行える．本システムはうどん，ラーメン，パスタの３つのシステムが閲覧できるが，今回はうどんをもとに説明する．
 \subsection{利用できる機能}
 本システムで使用可能なものを以下に示す．
@@ -40,5 +41,80 @@ githubのurlを以下に示す．
     \item {データの削除}   
 \end{itemize}
 \subsection{構成と操作方法について}
+\subsubsection{topページ}
+Webアプリケーションは以下のurlを使用し，アクセスすることで利用することができる．\\
+\url{http://localhost:8080/}
+このurlを使用すると最初図\ref{top}のようにtopページに飛ばされる．そこから「うどん一覧」をクリックすることで，「うどんの種類一覧」へ飛ぶことができる．
+\begin{figure}[H]\includegraphics[width=12cm]{./top.png}
+    \centering
+    \caption{topページ}
+    \label{top}
+    \end{figure}
 
+\subsubsection{一覧表示}
+「うどんの種類一覧」へ飛ぶと図\ref{udon}のような画面に移り変わる．ここではうどんの種類一覧を確認することができる．「追加」リンクから新規のデータを追加することができ，「topに戻る」リンクからtopページへ戻ることができる．
+\begin{figure}[H]\includegraphics[width=12cm]{./udon.png}
+    \centering
+    \caption{うどんの種類一覧}
+    \label{udon}
+    \end{figure}
+
+\subsubsection{詳細表示}
+一覧から選択したものの詳細を確認することができる．詳細情報の確認及び編集，削除することができ，図\ref{shousai}のように「編集」リンクを押すと編集画面へ，「削除」リンクを押すと削除画面へ移り変わる．また「うどんの種類一覧に戻る」リンクを押すことでうどんの種類一覧へ戻ることができる．
+\begin{figure}[H]\includegraphics[width=12cm]{./shousai.png}
+    \centering
+    \caption{うどんの種類一覧}
+    \label{shousai}
+    \end{figure}
+\subsubsection{追加機能}
+一覧画面から「追加」リンクを押した場合図\ref{tuika}の画面へ移り変わる．
+うどんの追加画面では図\ref{tuika2}のように種類名と温度，特徴が入力できる．「送信」ボタンを押すと入力した内容が反映され，図\ref{tuika3}のようになる．
+\begin{figure}[H]\includegraphics[width=12cm]{./tuika.png}
+    \centering
+    \caption{追加画面}
+    \label{tuika}
+    \end{figure}
+\begin{figure}[H]\includegraphics[width=12cm]{./tuika2.png}
+    \centering
+    \caption{追加中}
+    \label{tuika2}
+    \end{figure}   
+\begin{figure}[H]\includegraphics[width=12cm]{./tuika3.png}
+    \centering
+    \caption{追加後}
+    \label{tuika3}
+    \end{figure}     
+\subsubsection{編集機能}
+詳細画面から「編集」リンクを押した場合図\ref{henshuu}の画面へ移り変わる．
+うどんの編集画面では図\ref{hennshuu2}のように種類名と温度，特徴を変更することができる．「送信」ボタンを押すと入力した内容が反映され，図\ref{henshuu3}のようになる．
+\begin{figure}[H]\includegraphics[width=12cm]{./henshuu.png}
+    \centering
+    \caption{編集画面}
+    \label{henshuu}
+    \end{figure} 
+\begin{figure}[H]\includegraphics[width=12cm]{./henshuu2.png}
+    \centering
+    \caption{編集中}
+    \label{henshuu2}
+    \end{figure}    
+\begin{figure}[H]\includegraphics[width=12cm]{./henshuu3.png}
+    \centering
+    \caption{編集後}
+    \label{henshuu3}
+    \end{figure}           
+\subsubsection{削除機能}   
+詳細画面から「削除」リンクを押した場合図\ref{sakujo}のように削除確認画面が表示される．そこから「削除する」を押すとデータが削除され図\ref{sakujo2}のようになる． 
+\begin{figure}[H]\includegraphics[width=12cm]{./sakujo.png}
+    \centering
+    \caption{削除確認画面}
+    \label{sakujo}
+    \end{figure}
+\begin{figure}[H]\includegraphics[width=12cm]{./udon.png}
+    \centering
+    \caption{削除後}
+    \label{sakujo2}
+    \end{figure}
+\section{管理者向け仕様書}
+\subsection{概要}
+    
 \end{document}
