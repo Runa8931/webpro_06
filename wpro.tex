@@ -1,4 +1,4 @@
-\documentclass[uplatex,dvipdfmx]{jsarticle}
+\documentclass[uplatex,dvipdfmx]{jsreport}
 \usepackage{amsmath}
 \usepackage[dvipdfmx]{graphicx}
 
@@ -22,99 +22,163 @@
 \begin{document}
 
 
-\title{データ表示システムのWebアプリケーション仕様書}
+\title{一覧表示システムのWebアプリケーション仕様書}
 \author{25G1038川治稜雅}
 %\date{2015年11月13日}
 \maketitle
 githubのurlを以下に示す．\\
 \url{https://github.com/Runa8931/webpro_06}
-\section{利用者向け仕様書}
-\subsection{概要}
+\chapter{利用者向け仕様書}
+\section{概要}
 このシステムはWeb上でデータを閲覧または管理できるアプリケーションである．データの閲覧，詳細確認に加え，データの追加，編集，削除が行える．本システムはうどん，ラーメン，パスタの３つのシステムが閲覧できるが，今回はうどんをもとに説明する．
-\subsection{利用できる機能}
+\section{利用できる機能}
 本システムで使用可能なものを以下に示す．
 \begin{itemize}
     \item{うどんの種類一覧}
     \item{各うどんの詳細データ}
     \item{新規データの登録}
     \item {データの編集}
-    \item {データの削除}   
+    \item {データの削除}
 \end{itemize}
-\subsection{構成と操作方法について}
-\subsubsection{topページ}
-Webアプリケーションは以下のurlを使用し，アクセスすることで利用することができる．\\
+\section{構成と操作方法について}
+\subsection{topページ}
+Webアプリケーションは以下のurlを使用し，アクセスすることで利用することができる．なお，urlを開く際はGoogle Chromeで開くことを推奨とする．\\
 \url{http://localhost:8080/}
 このurlを使用すると最初図\ref{top}のようにtopページに飛ばされる．そこから「うどん一覧」をクリックすることで，「うどんの種類一覧」へ飛ぶことができる．
 \begin{figure}[H]\includegraphics[width=12cm]{./top.png}
     \centering
     \caption{topページ}
     \label{top}
-    \end{figure}
+\end{figure}
 
-\subsubsection{一覧表示}
+\subsection{一覧表示}
 「うどんの種類一覧」へ飛ぶと図\ref{udon}のような画面に移り変わる．ここではうどんの種類一覧を確認することができる．「追加」リンクから新規のデータを追加することができ，「topに戻る」リンクからtopページへ戻ることができる．
 \begin{figure}[H]\includegraphics[width=12cm]{./udon.png}
     \centering
     \caption{うどんの種類一覧}
     \label{udon}
-    \end{figure}
+\end{figure}
 
-\subsubsection{詳細表示}
+\subsection{詳細表示}
 一覧から選択したものの詳細を確認することができる．詳細情報の確認及び編集，削除することができ，図\ref{shousai}のように「編集」リンクを押すと編集画面へ，「削除」リンクを押すと削除画面へ移り変わる．また「うどんの種類一覧に戻る」リンクを押すことでうどんの種類一覧へ戻ることができる．
 \begin{figure}[H]\includegraphics[width=12cm]{./shousai.png}
     \centering
     \caption{うどんの種類一覧}
     \label{shousai}
-    \end{figure}
-\subsubsection{追加機能}
+\end{figure}
+\subsection{追加機能}
 一覧画面から「追加」リンクを押した場合図\ref{tuika}の画面へ移り変わる．
 うどんの追加画面では図\ref{tuika2}のように種類名と温度，特徴が入力できる．「送信」ボタンを押すと入力した内容が反映され，図\ref{tuika3}のようになる．
 \begin{figure}[H]\includegraphics[width=12cm]{./tuika.png}
     \centering
     \caption{追加画面}
     \label{tuika}
-    \end{figure}
+\end{figure}
 \begin{figure}[H]\includegraphics[width=12cm]{./tuika2.png}
     \centering
     \caption{追加中}
     \label{tuika2}
-    \end{figure}   
+\end{figure}
 \begin{figure}[H]\includegraphics[width=12cm]{./tuika3.png}
     \centering
     \caption{追加後}
     \label{tuika3}
-    \end{figure}     
-\subsubsection{編集機能}
+\end{figure}
+\subsection{編集機能}
 詳細画面から「編集」リンクを押した場合図\ref{henshuu}の画面へ移り変わる．
 うどんの編集画面では図\ref{hennshuu2}のように種類名と温度，特徴を変更することができる．「送信」ボタンを押すと入力した内容が反映され，図\ref{henshuu3}のようになる．
 \begin{figure}[H]\includegraphics[width=12cm]{./henshuu.png}
     \centering
     \caption{編集画面}
     \label{henshuu}
-    \end{figure} 
+\end{figure}
 \begin{figure}[H]\includegraphics[width=12cm]{./henshuu2.png}
     \centering
     \caption{編集中}
     \label{henshuu2}
-    \end{figure}    
+\end{figure}
 \begin{figure}[H]\includegraphics[width=12cm]{./henshuu3.png}
     \centering
     \caption{編集後}
     \label{henshuu3}
-    \end{figure}           
-\subsubsection{削除機能}   
-詳細画面から「削除」リンクを押した場合図\ref{sakujo}のように削除確認画面が表示される．そこから「削除する」を押すとデータが削除され図\ref{sakujo2}のようになる． 
+\end{figure}
+\subsection{削除機能}
+詳細画面から「削除」リンクを押した場合図\ref{sakujo}のように削除確認画面が表示される．そこから「削除する」を押すとデータが削除され図\ref{sakujo2}のようになる．
 \begin{figure}[H]\includegraphics[width=12cm]{./sakujo.png}
     \centering
     \caption{削除確認画面}
     \label{sakujo}
-    \end{figure}
+\end{figure}
 \begin{figure}[H]\includegraphics[width=12cm]{./udon.png}
     \centering
     \caption{削除後}
     \label{sakujo2}
-    \end{figure}
-\section{管理者向け仕様書}
-\subsection{概要}
-    
+\end{figure}
+\chapter{管理者向け仕様書}
+\section{概要}
+本システムは実行環境をnode.jsとしたWebアプリケーションである．サーバサイドでうどんのデータを管理し，EJSを用いて動的なページを開発することができる．本システムはmacOSを使用して開発しているため，macOSを基準として管理方法を示す．
+\subsection{セットアップ方法}
+\subsection*{Homebrewの説明とインストール方法}
+開発を始める際使用するプログラム言語やさまざまなツールが必要となるが，インストールするためにパッケージマネージャと呼ばれるソフトが存在する．その1つとして，macOSで動作するのがHomebrewである．\\
+ターミナルを起動し以下のコマンドを実行する．
+\begin{verbatim}/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+\end{verbatim}
+入力するとパスワードの入力が求められるので，入力しその後以下の２つのコマンドを順に実行する
+\begin{verbatim}
+    ( echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+\end{verbatim}
+\begin{verbatim}
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+\end{verbatim}
+\subsection*{nodebrewの説明とインストール方法}
+node.jsはバージョン更新が早いためバージョン管理をするためにnodebrewを使用する．\\
+ターミナルを起動し，以下の4つのコマンドを一つずつ実行する
+\begin{verbatim}
+    brew install nodebrew
+\end{verbatim}
+\begin{verbatim}
+    nodebrew setup
+\end{verbatim}
+\begin{verbatim}
+    echo 'export PATH=$HOME/.nodebrew/current/bin:$PATH' >> ~/.zshrc
+\end{verbatim}
+\begin{verbatim}
+    source ~/.zshrc
+\end{verbatim}
+\subsection*{node.jsの説明とインストール方法}
+もともとJsvaScriptはWeb上で利用するためのプログラム言語であったがそれをターミナル化が実行できるようにしたのがnode.jsである.\\
+ターミナルを起動し以下の4つのコマンドを一つずつ入力する．
+\begin{verbatim}
+    nodebrew install stable
+\end{verbatim}
+\begin{verbatim}
+    nodebrew ls
+\end{verbatim}
+現在のバージョンが表示されるため，それに沿って以下のコマンドを実行する．
+\begin{verbatim}
+    nodebrew use v24.1.0
+\end{verbatim}
+\begin{verbatim}
+    npm install -g npm
+\end{verbatim}
+\section{起動と終了方法}
+\subsection{ソースコードのダウンロード方法}
+以下のurlにアクセスし，「code」ボタンから「Download ZIP」を選択するとデータをダウンロードすることができる．このときZIPファイル名が「webpro\_06-main.zip」なっているので，webpro\_06に変更しておく．
+
+\url{https://github.com/Runa8931/webpro_06}
+\subsection{起動方法}
+ターミナル上で先ほどのファイルを置いた場所に移動し以下のコマンドを入力する．
+\begin{verbatim}
+node app5.js
+\end{verbatim}
+これにより起動がされるので，Webブラウザで以下のurlにアクセスするとtopページに飛ぶことができる．
+
+\url{http://localhost:8080/}
+\subsection{終了方法}
+終了したい場合はターミナル上でcontrol+cを押すとサーバが終了される．
+\subsection{起動できない場合と制限事項について}
+起動できない場合はport8080が他で使用されている可能性がある．そのため他のプロセスを終了してからサーバを立ち上げること．
+
+制限事項についてはサーバを終了し，再び立ち上げた際，事前に変更していた内容が保存されないことである．    
+\chapter{開発者向け仕様書}
 \end{document}
